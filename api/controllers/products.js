@@ -42,14 +42,14 @@ exports.get_all_products = (req, res, next) => {
 //Create a product
 
 exports.create_product = (req, res, next) => {
-    console.log(req.file);
+    console.log(req.body.name);
     const product = new Product({
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
         price: req.body.price,
         quantity: req.body.quantity,
         description: req.body.description,
-        productImage: req.file.path
+        // productImage: req.file.path
     });
     product.save().then(result => {
         console.log(result);

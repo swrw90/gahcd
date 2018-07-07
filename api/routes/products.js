@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const ProductsController = require('../controllers/products');
 
+
 const multer = require('multer');
 
 const storage = multer.diskStorage({
@@ -31,5 +32,7 @@ const upload = multer({
 });
 
 router.get('/', ProductsController.get_all_products);
+
+router.post('/',  ProductsController.create_product);
 
 module.exports = router;
