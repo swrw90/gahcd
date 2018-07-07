@@ -41,33 +41,33 @@ exports.get_all_products = (req, res, next) => {
 
 //Get specific product
 
-exports.get_product =  (req, res, next) => {
+exports.get_product = (req, res, next) => {
     const id = req.params.productId;
     Product.findById(id)
-    .select('name price description quantity _id productImage')
-    .exec()
-    .then(doc => {
-        console.log("In the database", doc);
-        if (doc) {
-            res.status(200).json({
-                product: doc,
-                request: {
-                    type: 'GET',
-                    url: 'http://localhost:5000/products/'
-                }
-            });
-        } else {
-            res.status(404).json({
-                message: 'Not Found'
-            })
-        }  
-    })
-    .catch(err => {
-        res.status(500).json({
-            error: 'Internal Error',
-            message: 'Try again'
+        .select('name price description quantity _id productImage')
+        .exec()
+        .then(doc => {
+            console.log("In the database", doc);
+            if (doc) {
+                res.status(200).json({
+                    product: doc,
+                    request: {
+                        type: 'GET',
+                        url: 'http://localhost:5000/products/'
+                    }
+                });
+            } else {
+                res.status(404).json({
+                    message: 'Not Found'
+                })
+            }
         })
-    });
+        .catch(err => {
+            res.status(500).json({
+                error: 'Internal Error',
+                message: 'Try again'
+            })
+        });
 };
 
 //Create a product
@@ -117,21 +117,44 @@ exports.update_product = (req, res, next) => {
         updateOps[ops.propName] = ops.value;
     }
     Product.update({ _id: id }, { $set: updateOps })
-    .exec()
-    .then(result => {
-        console.log(result);
-        res.status(200).json({
-            message: 'Product Updated',
-            request: {
-                type: 'GET',
-                url: 'http://localhost:5000/products/' + id
-            }
+        .exec()
+        .then(result => {
+            console.log(result);
+            res.status(200).json({
+                message: 'Product Updated',
+                request: {
+                    type: 'GET',
+                    url: 'http://localhost:5000/products/' + id
+                }
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err,
+            });
         });
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error: err,
-        });
-    });
 }
+
+//Delete a product
+exports.delete_product = (req, res, next) => {
+    const id = req.params.productId;
+    Product.remove({ _id: id })
+        .exec()
+        .then(result => {
+            res.status(200).json({
+                message: 'Product deleted',
+                request: {
+                    type: 'POST',
+                    url: 'http://localhost:5000/products/',
+                    body: { name: String, price: Number, description: String, quantity: Number }
+                }
+            })
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err,
+            });
+        });
+};
