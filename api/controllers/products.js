@@ -39,10 +39,41 @@ exports.get_all_products = (req, res, next) => {
         });
 }
 
+//Get specific product
+
+exports.get_product =  (req, res, next) => {
+    const id = req.params.productId;
+    Product.findById(id)
+    .select('name price description quantity _id productImage')
+    .exec()
+    .then(doc => {
+        console.log("In the database", doc);
+        if (doc) {
+            res.status(200).json({
+                product: doc,
+                request: {
+                    type: 'GET',
+                    url: 'http://localhost:5000/products/'
+                }
+            });
+        } else {
+            res.status(404).json({
+                message: 'Not Found'
+            })
+        }  
+    })
+    .catch(err => {
+        res.status(500).json({
+            error: 'Internal Error',
+            message: 'Try again'
+        })
+    });
+};
+
 //Create a product
 
 exports.create_product = (req, res, next) => {
-    console.log(req.body.name);
+    console.log(req.body.name + "Product created");
     const product = new Product({
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
