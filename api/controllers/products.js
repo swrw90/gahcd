@@ -73,7 +73,7 @@ exports.get_product = (req, res, next) => {
 //Create a product
 
 exports.create_product = (req, res, next) => {
-    console.log(req.body.name + "Product created");
+    console.log("Product created");
     const product = new Product({
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
