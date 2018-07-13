@@ -8,15 +8,19 @@ import { ic_business } from 'react-icons-kit/md/ic_business';
 class MainNav extends React.Component {
     render() {
         return (
-            <div style={{ background: '#2c3e50', color: '#FFF', width: 220 }}>
-                <SideNav highlightColor='#E91E63' highlightBgColor='#00bcd4' defaultSelected='sales'>
-                    <Nav id='dashboard'>
+            <div style={{ background: 'grey', color: '#FFF', width: 300 }}>
+                <SideNav highlightColor='#FFF' highlightBgColor='grey' defaultSelected='about'>
+                    <Nav id='about'>
                         <NavIcon><SvgIcon size={20} icon={ic_aspect_ratio} /></NavIcon>
-                        <NavText> Test </NavText>
+                        <NavText> About </NavText>
                     </Nav>
-                    <Nav id='sales'>
+                    <Nav id='products'>
                         <NavIcon><SvgIcon size={20} icon={ic_business} /></NavIcon>
-                        <NavText> Test </NavText>
+                        <NavText> Products </NavText>
+                    </Nav>
+                    <Nav id='products'>
+                        <NavIcon><SvgIcon size={20} icon={ic_business} /></NavIcon>
+                        <NavText> Contact </NavText>
                     </Nav>
                 </SideNav>
             </div>
