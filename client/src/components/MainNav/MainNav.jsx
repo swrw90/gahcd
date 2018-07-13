@@ -1,6 +1,7 @@
 import React from 'react';
 import SideNav, { Nav, NavIcon, NavText } from 'react-sidenav';
 import SvgIcon from 'react-icons-kit';
+import './main-nav.css';
 
 import { ic_aspect_ratio } from 'react-icons-kit/md/ic_aspect_ratio';
 import { ic_business } from 'react-icons-kit/md/ic_business';
@@ -9,6 +10,9 @@ class MainNav extends React.Component {
     render() {
         return (
             <div style={{ background: 'grey', color: '#FFF', width: 300 }}>
+                <Nav>
+                    <NavText>Whatever Blah</NavText>
+                </Nav>
                 <SideNav highlightColor='#FFF' highlightBgColor='grey' defaultSelected='about'>
                     <Nav id='about'>
                         <NavIcon><SvgIcon size={20} icon={ic_aspect_ratio} /></NavIcon>
