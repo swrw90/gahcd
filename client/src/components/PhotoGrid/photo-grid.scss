@@ -12,21 +12,20 @@ $font-light: 300;
 $font-bold: 700;
 
 // Colors
-$black: #353535;
-$gray: #4f4f4f;
-$medium-gray: #737373;
 $light-gray: #c4c4c4;
-$orange: #f96855;
+$blue: #3d61af;
+$black: #353535;
+$red: #c63939;
 
 // Semantic color names
-$accent: $orange;
+$accent: $red;
 
-$body-background: $black;
-$menu-background: $gray;
+$body-background: $light-gray;
+$menu-background: $blue;
 
-$main-font-color: $light-gray;
-$menu-active-color: $light-gray;
-$menu-font-color: $medium-gray;
+$main-font-color: $black;
+$menu-active-color: $black;
+$menu-font-color: $blue;
 $link-color: $accent;
 
 
@@ -117,7 +116,7 @@ body {
 
 .portfolio-item {
   background: $accent;
-  color: $light-gray;
+  color: $black;
   font-weight: $font-bold;
   display: flex;
   justify-content: center;
@@ -170,7 +169,7 @@ body {
   &::before {
     content: '';
     display: block;
-    background: $black;
+    background: $light-gray;
     opacity: 0.8;
     position: absolute;
     top: 0;
